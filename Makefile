@@ -5,7 +5,8 @@ docker-spin-up:
 	docker compose --env-file env up airflow-init && docker compose --env-file env up --build -d
 
 perms:
-	sudo mkdir -p logs plugins temp dags tests migrations && sudo chmod -R u=rwx,g=rwx,o=rwx logs plugins temp dags tests migrations
+#	sudo mkdir -p logs plugins temp dags tests migrations && sudo chmod -R u=rwx,g=rwx,o=rwx logs plugins temp dags tests migrations
+	mkdir logs plugins temp dags tests migrations && icacls logs plugins temp dags tests migrations /reset /t /c /q 
 
 up: perms docker-spin-up warehouse-migration
 
